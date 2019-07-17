@@ -17,7 +17,7 @@ var re = new RegExp(/{[A-Za-z]+}/gi)
 
 // READY ==========================================
 // ================================================
-goTranslate('es').then(result => {
+goTranslate('it').then(result => {
   writeResult('./dist/', 'phrases', result)
 })
 
