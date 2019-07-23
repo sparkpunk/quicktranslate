@@ -1,5 +1,8 @@
 {
-  "I'd like to order a large pizza, please.": "Mi piacerebbe ordinare una pizza grande, per favore.",
-  "Do you have jalapeños?": "Hai jalapeños?",
-  "Yes, extra anchovies.": "Sì, acciughe extra."
+  "0": "Valori ammessi per {unit} is between {min} e {max}",
+  "1": "Frequenza <span ng-show=\"exporter.$cronSpecNoOfUnits\"> (esporta ogni <span ng-bind=\"exporter.$cronSpecNoOfUnits\"> </span> <ng-pluralize count=\"exporter.$cronSpecNoOfUnits\" when=\"{'one': '{{exporter.schedule_unit}}', 'other': '{{exporter.schedule_unit}}s'}\"> </ng-pluralize>) </span>",
+  "2": "La directory '{dir}' non esiste o non si dispone delle autorizzazioni di scrittura.",
+  "3": "<B> Forbidden </ b>",
+  "4": "Non hai i permessi giusti per eseguire questa operazione.",
+  "5": "La taglist '{tag_list}' si risolve in più proprietà '{target_props}'"
 }
