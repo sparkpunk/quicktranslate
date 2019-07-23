@@ -16,6 +16,7 @@ var { phrases } = require('./src/sample-sm')
 var openTag_re = new RegExp(/\<[A-Za-z0-9]+([-][A-Za-z0-9]+)?\s?[A-Za-z0-9]+([-][A-Za-z0-9]+)?(.+?)\>/gi)
 var closeTag_re = new RegExp(/\<\/([A-Za-z0-9]+[-])?[A-Za-z0-9]+\>/gi)
 var templateStr_re = new RegExp(/\{[A-Za-z0-9]+\}/gi)
+
 // READY ==========================================
 // ================================================
 goTranslate('ga').then(result => {
@@ -39,8 +40,6 @@ async function goTranslate(lang) {
     str = elem_openTag ? subOut(elem_openTag, str, 'OPENER')      : str
     str = elem_closeTag ? subOut(elem_closeTag, str, 'CLOSER')    : str
     str = template_strs ? subOut(template_strs, str, 'TEMPLATE')  : str
-
-    console.log(template_strs)
     
     // TRANSLATE DIS BITCH!
     let trx = await translate(str, lang)
