@@ -1,5 +1,14 @@
 {
-  "I'd like to order a large pizza, please.": "Vorrei ordinare una pizza grande, per favore.",
-  "Do you have jalapeños?": "Hai jalapeños?",
-  "Yes, extra anchovies.": "Sì, acciughe extra."
+  "orderPizza": {
+    "en-us": "I'd like to order a {large_pizza}, please.",
+    "it": "Vorrei ordinare un {large_pizza}, per favore."
+  },
+  "doYouHaveJalapenos": {
+    "en-us": "Do you have jalapeños?",
+    "it": "Hai jalapeños?"
+  },
+  "extraAnchovies": {
+    "en-us": "Yes, please add extra anchovies.",
+    "it": "Sì, aggiungi altre acciughe."
+  }
 }
