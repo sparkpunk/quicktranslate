@@ -1,5 +1,29 @@
 {
-  "I'd like to order a large pizza, please.": "Vorrei ordinare una pizza grande, per favore.",
-  "Do you have jalapeños?": "Hai jalapeños?",
-  "Yes, extra anchovies.": "Sì, acciughe extra."
+  "doYouHaveJalapenos": {
+    "en-us": "Do you have jalapeños?",
+    "de": "Hast du Jalapeños?",
+    "es": "¿Tienes jalapeños?",
+    "fr": "Avez-vous des jalapeños?",
+    "ga": "An bhfuil jalapeños agat?",
+    "it": "Hai jalapeños?",
+    "nl": "Heb je jalapeños?"
+  },
+  "orderPizza": {
+    "en-us": "I'd like to order a {large_pizza}, please.",
+    "de": "Ich möchte bitte eine {large_pizza} bestellen.",
+    "es": "Me gustaría pedir un {large_pizza}, por favor.",
+    "fr": "J'aimerais commander un {large_pizza}, s'il vous plaît.",
+    "ga": "Ba mhaith liom {large_pizza} a ordú, le do thoil.",
+    "it": "Vorrei ordinare un {large_pizza}, per favore.",
+    "nl": "Ik wil graag een {large_pizza} bestellen."
+  },
+  "extraToppings": {
+    "en-us": "Yes, please add <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div>.",
+    "de": "Ja, bitte <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div> hinzufügen.",
+    "es": "Sí, agregue <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div>.",
+    "fr": "Oui, veuillez ajouter <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div>.",
+    "ga": "Sea, cuir <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div> le do thoil, le do thoil.",
+    "it": "Sì, aggiungi <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div>.",
+    "nl": "Ja, voeg <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div> toe."
+  }
 }
