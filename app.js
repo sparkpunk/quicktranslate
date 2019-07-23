@@ -11,16 +11,14 @@ const translate = require('translate')
 // ================================================
 var { phrases } = require('./src/sample-sm')
 
-// phrases = Object.entries(phrases).map(phrase => { return phrase })
-
 // VARIABLES ======================================
 // ================================================
-var vars_re = new RegExp(/\{[A-Za-z0-9]+.+?\}/gi)
-var open_re = new RegExp(/\<[A-Za-z0-9]+([-][A-Za-z0-9]+)?\s?[A-Za-z0-9]+([-][A-Za-z0-9]+)?(.+?)\>/gi)
-var close_re = new RegExp(/\<\/([A-Za-z0-9]+[-])?[A-Za-z0-9]+\>/gi)
+var openTag_re = new RegExp(/\<[A-Za-z0-9]+([-][A-Za-z0-9]+)?\s?[A-Za-z0-9]+([-][A-Za-z0-9]+)?(.+?)\>/gi)
+var closeTag_re = new RegExp(/\<\/([A-Za-z0-9]+[-])?[A-Za-z0-9]+\>/gi)
+var templateStr_re = new RegExp(/\{[A-Za-z0-9]+\}/gi)
 // READY ==========================================
 // ================================================
-goTranslate('it').then(result => {
+goTranslate('ga').then(result => {
   writeResult('./dist/', 'phrases', result)
 })
 
@@ -32,43 +30,25 @@ async function goTranslate(lang) {
   
   for(const p in phrases) {
     let str = phrases[p]
-
-    let var_temps = str.match(vars_re)
-    let open_tags = str.match(open_re)
-    let close_tags = str.match(close_re)
+  
+    let elem_openTag = str.match(openTag_re)
+    let elem_closeTag = str.match(closeTag_re)
+    let template_strs = str.match(templateStr_re)
     
-    if(open_tags) {
-      open_tags.forEach((match, index) => {
-        str = str.replace(open_tags[index], `DUMMYOPENER${index} `)
-      })
-      close_tags.forEach((match, index) => {
-        str = str.replace(close_tags[index], `DUMMYCLOSER${index} `)
-      })
-    }
+    // DON'T TRANSLATE HTML ELEMENTS OR VARIABLES
+    str = elem_openTag ? subOut(elem_openTag, str, 'OPENER')      : str
+    str = elem_closeTag ? subOut(elem_closeTag, str, 'CLOSER')    : str
+    str = template_strs ? subOut(template_strs, str, 'TEMPLATE')  : str
 
-    if(var_temps) {
-      var_temps.forEach((match, index) => {
-        str = str.replace(var_temps[index], `DUMMYTEMPLATE${index} `)
-      })
-    }
-
+    console.log(template_strs)
+    
     // TRANSLATE DIS BITCH!
     let trx = await translate(str, lang)
     
-    if(open_tags) {
-      open_tags.forEach((match, index) => {
-        trx = trx.replace(`DUMMYOPENER${index}`, open_tags[index].trim())
-      })
-      close_tags.forEach((match, index) => {
-        trx = trx.replace(`DUMMYCLOSER${index}`, close_tags[index].trim())
-      })
-    }
-
-    if(var_temps) {
-      var_temps.forEach((match, index) => {
-        trx = trx.replace(`DUMMYTEMPLATE${index}`, var_temps[index].trim())
-      })
-    }
+    // REPLACE DUMMY TEXT WITH ORIGINAL HTML ELEMENTS & VARIABLES
+    trx = elem_openTag ? subIn(elem_openTag, trx, 'OPENER')     : trx
+    trx = elem_closeTag ? subIn(elem_closeTag, trx, 'CLOSER')   : trx
+    trx = template_strs ? subIn(template_strs, trx, 'TEMPLATE') : trx
 
     obj[ind] = trx
     ind++
@@ -79,6 +59,22 @@ async function goTranslate(lang) {
 
 // UTILITIES ======================================
 // ================================================
+function subOut(arr, str, lead) {
+  str = str
+  arr.forEach((item, index) => {
+    str = str.replace(arr[index], `DUMMY${lead}${index}`)
+  })
+  return str
+}
+
+function subIn(arr, str, lead) {
+  str = str
+  arr.forEach((item, index) => {
+    str = str.replace(`DUMMY${lead}${index}`, arr[index])
+  })
+  return str
+}
+
 function writeResult(dir, filename, data) {
   fs.writeFile(`${dir}/${filename}.json`, JSON.stringify(data, null, 2), err => {
     if(err) throw err
