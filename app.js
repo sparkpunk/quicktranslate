@@ -9,7 +9,7 @@ const translate = require('translate')
 
 // IMPORTS ========================================
 // ================================================
-var { phrases } = require('./src/sample-sm')
+var { phrases } = require('./src/sample')
 
 // VARIABLES ======================================
 // ================================================
@@ -19,7 +19,7 @@ var templateStr_re = new RegExp(/\{[A-Za-z0-9]+\}/gi)
 
 // READY ==========================================
 // ================================================
-goTranslate('ga').then(result => {
+goTranslate('it').then(result => {
   writeResult('./dist/', 'phrases', result)
 })
 
@@ -49,7 +49,7 @@ async function goTranslate(lang) {
     trx = elem_closeTag ? subIn(elem_closeTag, trx, 'CLOSER')   : trx
     trx = template_strs ? subIn(template_strs, trx, 'TEMPLATE') : trx
 
-    obj[ind] = trx
+    obj[phrases[ind]] = trx
     ind++
   }
 

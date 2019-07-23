@@ -1,9 +1,5 @@
 {
-  "0": "Tá luachanna ceadaithe do {unit} idir {min} agus {max}",
-  "1": "Minicíocht <span ng-show=\"exporter.$cronSpecNoOfUnits\"> (onnmhairí gach <span ng-bind=\"exporter.$cronSpecNoOfUnits\"></span><ng-pluralize count=\"exporter.$cronSpecNoOfUnits\" when=\"{'one': '{{exporter.schedule_unit}}', 'other': '{{exporter.schedule_unit}}s'}\"></ng-pluralize>) </span>",
-  "2": "Níl an Eolaire '{dir}' ann nó níl ceadanna scríofa agat.",
-  "3": "<b> Forbidden</b>",
-  "4": "Níl na ceadanna cearta agat chun an oibríocht seo a dhéanamh.",
-  "5": "Réitíonn an taglist '{tag_list}' chuig il-airíonna '{target_props}'",
-  "6": "Cad atá tú suas, {name}?"
+  "I'd like to order a large pizza, please.": "Vorrei ordinare una pizza grande, per favore.",
+  "Do you have jalapeños?": "Hai jalapeños?",
+  "Yes, extra anchovies.": "Sì, acciughe extra."
 }
