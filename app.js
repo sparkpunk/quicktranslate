@@ -12,55 +12,63 @@ const translate = require('translate')
 var { phrases } = require('./src/sample')
 var { languages } = require('./src/languages')
 
-var src_keys = Object.keys(phrases).map(phrase => { return phrase })
-
+var language_codes = Object.keys(languages)
+var language_names = Object.values(languages)
 // VARIABLES ======================================
 // ================================================
-var openTag_re = new RegExp(/\<[A-Za-z0-9]+([-][A-Za-z0-9]+)?\s?[A-Za-z0-9]+([-][A-Za-z0-9]+)?(.*?)\>/gi)
-var closeTag_re = new RegExp(/\<\/([A-Za-z0-9]+[-])?[A-Za-z0-9]+\>/gi)
-var templates_re = new RegExp(/\{[A-Za-z0-9]+.*\}/gi)
-
+var sentence = "Live many years, for the foolishest thing a man can do in this life is to let himself die."
 // READY ==========================================
 // ================================================
-goTranslate(languages).then(result => {
-  writeResult('./dist/', 'phrases', result)
+goTranslate(language_codes).then(data => {
+  var obj = {}
+  var substitutes = Object.keys(data)
+
+  for(const l in language_codes) {
+    var lang_code = language_codes[l]
+    var lang_name = language_names[l]
+    var local_sentence = `<p id='quote' data='${lang_name}' class='book-quote inline'>${sentence}</p>`
+    
+    substitutes.forEach(substitute => {
+      var substitute_REGX = new RegExp('\\b' + substitute + '\\b', 'g')
+      var translation = data[substitute][lang_code]
+      var trx_with_bg = background_gradient(translation)
+
+      local_sentence = local_sentence.replace(substitute_REGX, trx_with_bg)
+    })
+
+    local_sentence = local_sentence.replace(/\<\/span\>\<\/span\>\./g, '.</span></span>')
+    local_sentence = local_sentence.replace(/\<\/span\>\<\/span\>\,/g, ',</span></span>')
+    local_sentence = local_sentence.replace(/\<\/span\>\<\/span\>\;/g, ';</span></span>')
+
+    obj[lang_name] = local_sentence
+  }
+
+  writeResult('./dist/', 'phrases', obj)
 })
 
 // FUNCTIONS ======================================
 // ================================================
-async function goTranslate(languages) {
+async function goTranslate(arr) {
   var obj = {}
-  
-  for(const p in src_keys) {
-    const src_key = src_keys[p]
-    const str = phrases[src_key]['en-us']
 
-    obj[src_key] = {}
-    obj[src_key]['en-us'] = str
+  phrases.forEach(phrase => {
+    obj[phrase] = {}
+    obj[phrase]['en'] = phrase
+  })
 
-    var openTags = str.match(openTag_re)
-    var closeTags = str.match(closeTag_re)
-    var templates = str.match(templates_re)
+  var phr_str = phrases.join('\n')
 
-    for(var i = 0; i < languages.length; i++) {
-      let src = str
+  for(const l in arr) {
+    var lang = arr[l]
+    var trx_str = await translate(phr_str, lang)
 
-      // DON'T TRANSLATE HTML ELEMENTS OR VARIABLES
-      src = openTags  ? subOut(openTags,  src, 'XXOPENXX')   : src
-      src = closeTags ? subOut(closeTags, src, 'XXCLOSEXX')   : src
-      src = templates ? subOut(templates, str, 'XXTEMPLATEXX') : src
 
-      // // TRANSLATE DIS BITCH!
-      let trx = await translate(src, languages[i])
-      
-      // REPLACE DUMMY TEXT WITH ORIGINAL HTML ELEMENTS & VARIABLES
-      trx = openTags  ? subIn(openTags,  trx, 'XXOPENXX')   : trx
-      trx = closeTags ? subIn(closeTags, trx, 'XXCLOSEXX')   : trx
-      trx = templates ? subIn(templates, trx, 'XXTEMPLATEXX') : trx
-    
-      obj[src_key][languages[i]] = trx
+    var trx_arr = trx_str.split('\n')
+    var phr_arr = phr_str.split('\n')
 
-    }
+    trx_arr.forEach((trx, ind) => {
+      obj[phr_arr[ind]][lang] = trx
+    })
   }
 
   return obj
@@ -68,25 +76,13 @@ async function goTranslate(languages) {
 
 // UTILITIES ======================================
 // ================================================
-function subOut(arr, text, lead) {
-  text = text
-  arr.forEach((item, index) => {
-    text = text.replace(arr[index], `${lead}${index}`)
-  })
-  return text
-}
-
-function subIn(arr, text, lead) {
-  text = text
-  arr.forEach((item, index) => {
-    text = text.replace(`${lead}${index}`, arr[index])
-  })
-  return text
-}
-
 function writeResult(dir, filename, data) {
-  fs.writeFile(`${dir}/${filename}.json`, JSON.stringify(data, null, 2), err => {
+  fs.writeFile(`${dir}/${filename}.json`, `var languages = ${JSON.stringify(data, null, 2)}`, err => {
     if(err) throw err
     console.log(`${filename}.json was saved into ${dir}.`)
   })
+}
+
+function background_gradient(str) {
+  return `<span class='spectrum-bg'><span class='inline reversed'>${str}</span></span>`
 }

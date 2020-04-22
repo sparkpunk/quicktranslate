@@ -1,29 +1,18 @@
-{
-  "doYouHaveJalapenos": {
-    "en-us": "Do you have jalapeños?",
-    "de": "Hast du Jalapeños?",
-    "es": "¿Tienes jalapeños?",
-    "fr": "Avez-vous des jalapeños?",
-    "ga": "An bhfuil jalapeños agat?",
-    "it": "Hai jalapeños?",
-    "nl": "Heb je jalapeños?"
-  },
-  "orderPizza": {
-    "en-us": "I'd like to order a {large_pizza}, please.",
-    "de": "Ich möchte bitte eine {large_pizza} bestellen.",
-    "es": "Me gustaría pedir un {large_pizza}, por favor.",
-    "fr": "J'aimerais commander un {large_pizza}, s'il vous plaît.",
-    "ga": "Ba mhaith liom {large_pizza} a ordú, le do thoil.",
-    "it": "Vorrei ordinare un {large_pizza}, per favore.",
-    "nl": "Ik wil graag een {large_pizza} bestellen."
-  },
-  "extraToppings": {
-    "en-us": "Yes, please add <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div>.",
-    "de": "Ja, bitte <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div> hinzufügen.",
-    "es": "Sí, agregue <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div>.",
-    "fr": "Oui, veuillez ajouter <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div>.",
-    "ga": "Sea, cuir <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div> le do thoil, le do thoil.",
-    "it": "Sì, aggiungi <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div>.",
-    "nl": "Ja, voeg <div ng-repeat=\"topping in $ctrl.getToppings()\"><span ng-bind=\"::topping.name\"></span></div> toe."
-  }
+var languages = {
+  "Arabic": "<p id='quote' data='Arabic' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>سنوات عدة,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>هذه الحياة</span></span> is to let himself die.</p>",
+  "German": "<p id='quote' data='German' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>viele Jahre,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>dieses Leben</span></span> is to let himself die.</p>",
+  "Greek": "<p id='quote' data='Greek' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>πολλά χρόνια,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>αυτη η ΖΩΗ</span></span> is to let himself die.</p>",
+  "Spanish": "<p id='quote' data='Spanish' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>muchos años,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>esta vida</span></span> is to let himself die.</p>",
+  "French": "<p id='quote' data='French' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>de nombreuses années,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>cette vie</span></span> is to let himself die.</p>",
+  "Hindi": "<p id='quote' data='Hindi' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>कई साल,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>यह जीवन</span></span> is to let himself die.</p>",
+  "Italian": "<p id='quote' data='Italian' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>molti anni,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>questa vita</span></span> is to let himself die.</p>",
+  "Japanese": "<p id='quote' data='Japanese' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>長年,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>この人生</span></span> is to let himself die.</p>",
+  "Korean": "<p id='quote' data='Korean' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>오랜 세월,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>이 삶</span></span> is to let himself die.</p>",
+  "Malay": "<p id='quote' data='Malay' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>bertahun-tahun,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>hidup ini</span></span> is to let himself die.</p>",
+  "Dutch": "<p id='quote' data='Dutch' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>vele jaren,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>dit leven</span></span> is to let himself die.</p>",
+  "Polish": "<p id='quote' data='Polish' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>wiele lat,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>to życie</span></span> is to let himself die.</p>",
+  "Portuguese": "<p id='quote' data='Portuguese' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>muitos anos,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>essa vida</span></span> is to let himself die.</p>",
+  "Russian": "<p id='quote' data='Russian' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>много лет,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>эта жизнь</span></span> is to let himself die.</p>",
+  "Tamil": "<p id='quote' data='Tamil' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>பல ஆண்டுகள்,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>இந்த வாழ்க்கை</span></span> is to let himself die.</p>",
+  "Chinese": "<p id='quote' data='Chinese' class='book-quote inline'>Live <span class='spectrum-bg'><span class='inline reversed'>很多年,</span></span> for the foolishest thing a man can do in <span class='spectrum-bg'><span class='inline reversed'>今生</span></span> is to let himself die.</p>"
 }
