@@ -15,7 +15,7 @@
   "author": "Zak Erving",
   "license": "ISC",
   "dependencies": {
-    "translate": "^1.1.0"
+    "translate": "^1.4.1"
   },
   "devDependencies": {
     "dotenv": "^8.0.0"
